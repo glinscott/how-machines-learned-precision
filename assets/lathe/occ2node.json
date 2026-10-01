@@ -1,0 +1,127 @@
+{
+  "M/dKyWzuSaVZgYGJw": {
+    "solid": "RcBD_0",
+    "edges": "RcBD_edges_0",
+    "name": "headstockCap <1>"
+  },
+  "M1nt3SnDA79/fYIO7": {
+    "solid": "REGD_1",
+    "edges": "REGD_edges_1",
+    "name": "gearLeadScrew <1>"
+  },
+  "M6L0EtOEtn3VuSek6": {
+    "solid": "RWGD_2",
+    "edges": "RWGD_edges_2",
+    "name": "leadScrew <1>"
+  },
+  "M97Xy2EKVc3VWdzYo": {
+    "solid": "R4ED_3",
+    "edges": "R4ED_edges_3",
+    "name": "capstanWheel <1>"
+  },
+  "MBFYh4RIPrprF7Rh8": {
+    "solid": "RhCD_4",
+    "edges": "RhCD_edges_4",
+    "name": "leadScrewBearingLeft <1>"
+  },
+  "MCZ0PoR3NrKMMRCrR": {
+    "solid": "RGHD_5",
+    "edges": "RGHD_edges_5",
+    "name": "leadScrewThreadUnit <1>"
+  },
+  "MKA0DI7IYvHTu1Z+x": {
+    "solid": "RTFD_8",
+    "edges": "RTFD_edges_8",
+    "name": "workpiece <1>"
+  },
+  "MLz3xfV2dsrI0MGNG": {
+    "solid": "R_CD_9",
+    "edges": "R_CD_edges_9",
+    "name": "leadScrewBearingRight <1>"
+  },
+  "MLzebfkQyy/aWeSZO": {
+    "solid": "RXED_10",
+    "edges": "RXED_edges_10",
+    "name": "spindle <1>"
+  },
+  "MMkUVVDhUCDtyNu3L": {
+    "solid": "JuD_11",
+    "edges": "JuD_edges_11",
+    "name": "standardRight <2>"
+  },
+  "MOMUMMX+XDyx+J2gh": {
+    "solid": "RzHD_12",
+    "edges": "RzHD_edges_12",
+    "name": "crossFeedWheel <1>"
+  },
+  "MUyK7gvzb+uv/bBSt": {
+    "solid": "RdDD_14",
+    "edges": "RdDD_edges_14",
+    "name": "changeGearBracket <1>"
+  },
+  "MVpcOl2SGrd7qD5Sk": {
+    "solid": "R_JD_15",
+    "edges": "R_JD_edges_15",
+    "name": "idlerStud <1>"
+  },
+  "MXs6KZqckKhPn2oUW": {
+    "solid": "RgFD_16",
+    "edges": "RgFD_edges_16",
+    "name": "gearSpindle <1>"
+  },
+  "Ma8PqLwdnWbDYJpWo": {
+    "solid": "RkHD_17",
+    "edges": "RkHD_edges_17",
+    "name": "crossSlide <1>"
+  },
+  "Mbbg6s/BpHaAl9boa": {
+    "solid": "JbD_18",
+    "edges": "JbD_edges_18",
+    "name": "standardLeft <2>"
+  },
+  "MbvlCkpgzYIovt7Uk": {
+    "solid": "RDID_19",
+    "edges": "RDID_edges_19",
+    "name": "toolPost <1>"
+  },
+  "MdOUuvFTv6sVTsb0B": {
+    "solid": "RcJD_20",
+    "edges": "RcJD_edges_20",
+    "name": "changeGearQuadrant <1>"
+  },
+  "Mfb0ngtwI58P2nFvM": {
+    "solid": "R9BD_21",
+    "edges": "R9BD_edges_21",
+    "name": "tailstock <1>"
+  },
+  "Mk0Y+nex3h5sVD++C": {
+    "solid": "JxD_22",
+    "edges": "JxD_edges_22",
+    "name": "headstock <2>"
+  },
+  "Mkrh2Qd3bWeSHYUXf": {
+    "solid": "JKD_23",
+    "edges": "JKD_edges_23",
+    "name": "bedBarFront <1>"
+  },
+  "Mla4oec+AoVzFAF3e": {
+    "solid": "RyFD_24",
+    "edges": "RyFD_edges_24",
+    "name": "gearIdler <1>"
+  },
+  "Ms3LjY6NrF4r8jTwV": {
+    "solid": "JHD_25",
+    "edges": "JHD_edges_25",
+    "name": "bedBarRear <1>"
+  },
+  "Mv1pUuy6O8NEvIQbK": {
+    "solid": "RVCD_26",
+    "edges": "RVCD_edges_26",
+    "name": "tailstockCentre <1>"
+  },
+  "MyTEZNnGs7cGbiAOp": {
+    "solid": "ROHD_27",
+    "edges": "ROHD_edges_27",
+    "name": "saddle <1>"
+  }
+}

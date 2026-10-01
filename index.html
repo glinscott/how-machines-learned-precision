@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Precision from Scratch</title>
+  <meta name="description" content="How do you make an accurate machine without one to copy? Explore flat surfaces, screw-cutting lathes, and millionth-of-an-inch measurements through interactive 3D figures.">
+  <meta name="author" content="Gary Linscott">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://glinscott.github.io/precision-from-scratch/">
+  <link rel="sitemap" type="application/xml" href="https://glinscott.github.io/precision-from-scratch/sitemap.xml">
+
+  <!-- Google tag (gtag.js), shared with the Beam Engine article. -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-47FZ875H0Y"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-47FZ875H0Y');
+  </script>
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Gary Linscott">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://glinscott.github.io/precision-from-scratch/">
+  <meta property="og:title" content="Precision from Scratch">
+  <meta property="og:description" content="How do you make an accurate machine without one to copy? Explore flat surfaces, screw-cutting lathes, and millionth-of-an-inch measurements through interactive 3D figures.">
+  <meta property="og:image" content="https://glinscott.github.io/precision-from-scratch/precision-social-card.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:alt" content="Precision from Scratch: a screw-cutting lathe of about 1800, shown in three-quarter view.">
+  <meta property="article:published_time" content="2026-10-01">
+  <meta property="article:modified_time" content="2026-10-01">
+  <meta property="article:author" content="https://glinscott.github.io/">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Precision from Scratch">
+  <meta name="twitter:description" content="How do you make an accurate machine without one to copy? Explore flat surfaces, screw-cutting lathes, and millionth-of-an-inch measurements through interactive 3D figures.">
+  <meta name="twitter:image" content="https://glinscott.github.io/precision-from-scratch/precision-social-card.jpg">
+  <meta name="twitter:image:alt" content="Precision from Scratch: a screw-cutting lathe of about 1800, shown in three-quarter view.">
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Precision from Scratch",
+      "description": "How do you make an accurate machine without one to copy? Explore flat surfaces, screw-cutting lathes, and millionth-of-an-inch measurements through interactive 3D figures.",
+      "image": "https://glinscott.github.io/precision-from-scratch/precision-social-card.jpg",
+      "datePublished": "2026-10-01",
+      "dateModified": "2026-10-01",
+      "mainEntityOfPage": "https://glinscott.github.io/precision-from-scratch/",
+      "author": {
+        "@type": "Person",
+        "name": "Gary Linscott",
+        "url": "https://glinscott.github.io/"
+      }
+    }
+  </script>
+  <link rel="icon" type="image/svg+xml" href="/precision-from-scratch/favicon.svg">
+  <style>
+    /* Prototype-only chrome for unbuilt figures. */
+    .figure-placeholder {
+      border: 2px dashed #b8b2a7;
+      border-radius: 6px;
+      padding: 1.25rem 1.5rem;
+      margin: 0 0 1.5rem;
+      color: #6b6558;
+      font-size: 0.9em;
+    }
+    .figure-placeholder strong { display: block; margin-bottom: 0.25rem; }
+  </style>
+  <script type="module" crossorigin src="/precision-from-scratch/assets/origins-DFgA9RaW.js"></script>
+  <link rel="stylesheet" crossorigin href="/precision-from-scratch/assets/origins-B8DRjudf.css">
+</head>
+<body>
+  <article class="article">
+
+    <header class="article-header">
+      <h1>Precision from Scratch</h1>
+      <p class="subtitle">The machine that made machines</p>
+      <p class="article-byline">By <a href="https://glinscott.github.io/">Gary Linscott</a></p>
+    </header>
+
+    <section id="introduction">
+      <figure class="interactive" data-figure="hero-lathe"
+        aria-label="A screw-cutting lathe cutting a thread: the work turns while the tool advances along it.">
+        <div class="figure-canvas"></div>
+      </figure>
+
+      <p>This is a screw-cutting lathe of the kind <a
+        href="https://en.wikipedia.org/wiki/Henry_Maudslay">Henry Maudslay</a> built in London
+        around 1800. A labourer turns the large wheel to spin the bar in the middle, and a cutting
+        tool moves along beside it on a carriage that slides on straight iron rails. A long screw
+        moves the carriage the same distance on every turn of the bar, cutting a thread into its
+        surface. Lathes like this made shafts and screws for steam engines, looms, locomotives and
+        other lathes.</p>
+
+      <p>But the lathe's own parts have to be accurate first. If a rail is bent, the tool follows
+        the bend. If the turns of the screw are unevenly spaced, the thread it cuts will be uneven
+        too. These errors leave pistons leaking, shafts wobbling in their bearings and nuts jamming
+        on their bolts. In the 1770s, workshops were still struggling to make large cylinders round,
+        long rails straight and screw threads evenly spaced. Even checking their work was difficult:
+        the smallest mark on an ordinary workshop rule was a sixteenth of an inch, about a
+        millimetre and a half.</p>
+
+      <p>By the 1850s, <a href="https://en.wikipedia.org/wiki/Joseph_Whitworth">Joseph
+        Whitworth</a> had built a machine that could detect a difference of a
+        millionth of an inch. In this article we'll follow how workshops learned to make flat
+        surfaces, cut accurate screws and measure their parts, using interactive figures to explore
+        each step (try <span
+        class="hint-touch">rotating the lathe above with two fingers, or pinching to zoom
+        in</span><span class="hint-pointer">dragging the lathe above, or zooming with ⌘/Ctrl +
+        scroll</span>). Let's start with the cylinder of <a
+        href="https://en.wikipedia.org/wiki/James_Watt">Watt</a>'s steam engine, which we built in
+        the <a href="https://glinscott.github.io/beam-engine/">previous article</a>.</p>
+    </section>
+
+    <section id="cylinder">
+      <h2>The cylinder</h2>
+
+      <p><a href="https://en.wikipedia.org/wiki/Thomas_Newcomen">Newcomen</a>'s engine filled a
+        cylinder with steam, then condensed it with a spray of cold water. The atmosphere pushed
+        the piston down into the partial vacuum, but the spray also chilled the cylinder. Watt
+        moved the condensation into a separate cold vessel so that the cylinder could stay hot,
+        saving about two thirds of the coal. This also meant he had to change the way he sealed
+        the piston. Below, we can compare the two engines.</p>
+
+      <figure class="interactive" data-figure="piston-seal"
+        aria-label="Newcomen's cold cylinder lets a pool of water seal its piston; Watt's hot cylinder needs dry packing.">
+        <div class="figure-canvas"></div>
+      </figure>
+
+      <p>Newcomen kept a pool of water on his piston to fill the gaps against the uneven cylinder
+        wall. Water would have cooled Watt's cylinder, so he used dry packing instead. The tightly
+        rammed packing couldn't give way enough to fill the gaps, so the hole through the cylinder,
+        called the <em>bore</em>, had to be round and straight along the whole stroke.</p>
+
+      <aside class="sidenote">
+        <p>Watt tried many materials for packing. In 1770 he had hopes of “pasteboard, cork, tow,
+          and horse-dung mixed,” and <a href="https://en.wikipedia.org/wiki/Matthew_Boulton">Matthew
+          Boulton</a> later tried a “hat, filled up with paper chewed.”</p>
+      </aside>
+
+      <p>The cylinders of the 1760s were far from that. The eighteen-inch cylinder of Watt's test
+        engine at Kinneil, in 1769, was about ⅜ of an inch wider one way than the other at its worst
+        point. That is nearly a centimetre of error in a cylinder less than half a metre wide.</p>
+
+      <p>The traditional way to make two parts fit was to press them together and file away the
+        bright spots where they rubbed. The workman doing this was called a <em>fitter</em>. He
+        could make the small surfaces of a valve or a gun lock fit closely, but a piston had to fit
+        at every point along its stroke. Filing one part of the bore wouldn't make the rest match,
+        and most of it was deep inside the cylinder, where a file couldn't reach.</p>
+
+      <p>To see why this was such a challenge, let's go through how the cylinders were built. The
+        thick iron walls were made in one piece by pouring molten iron into a mould, a process
+        called <em>casting</em>. The mould formed the outside, while a <em>core</em> in the middle
+        left a hole through the iron.<sup class="footnote-ref" id="fnref-1"><a
+        href="#fn-1">1</a></sup> Below, we can watch a cylinder being cast in a sand mould.</p>
+
+      <figure class="interactive" data-figure="casting-core"
+        aria-label="A sand core forms the rough hole through an iron casting.">
+        <div class="figure-canvas"></div>
+      </figure>
+
+      <p>Molten iron is far denser than sand, so it pushes the core upward against
+        whatever holds it down. If it lifts even slightly, the casting is ruined. Even a core that
+        stays in place leaves a rough hole that isn't straight or round. A <em>boring mill</em>
+        cuts away the inside of the casting to bring it to the right shape and size.</p>
+
+      <p>The boring mills of the time held the cutter on the end of a long bar supported from one
+        side, like a broomstick held at arm's length. The bar sagged under its own weight,<sup
+        class="footnote-ref" id="fnref-2"><a href="#fn-2">2</a></sup> and the uneven wall pushed it
+        from side to side as it cut. Instead of making a straight hole, the cutter followed much of
+        the crooked one. Large cylinders were bored four times, turned a quarter turn between passes,
+        and still did not always come out round.<sup class="footnote-ref" id="fnref-3"><a
+        href="#fn-3">3</a></sup></p>
+
+      <figure class="interactive" data-figure="boring-mill" data-beats="0-2"
+        aria-label="An overhanging boring bar bends under its weight and follows the crooked hole.">
+        <div class="figure-canvas"></div>
+      </figure>
+
+      <p>Around 1775, the ironmaster <a
+        href="https://en.wikipedia.org/wiki/John_Wilkinson_(industrialist)">John Wilkinson</a> found
+        an ingenious solution. He built a boring mill with a much heavier bar that ran right through
+        the cylinder and turned in bearings at both ends.<sup class="footnote-ref" id="fnref-4"><a
+        href="#fn-4">4</a></sup> The casting was clamped in place, and the cutter head slid along
+        the bar as it turned. The cutter now followed the bar the way a pencil follows a ruler.
+        Supporting both ends greatly reduced the bending, so the cutter could make a straight bore
+        through a crooked casting.</p>
+
+      <figure class="interactive" data-figure="boring-mill" data-beats="3-4"
+        aria-label="Supporting the boring bar at both ends keeps the cutter straight, so the new bore takes a piston almost its full size while the old bore's largest piston leaks.">
+        <div class="figure-canvas"></div>
+      </figure>
+
+      <p>In 1776, Watt's partner Matthew Boulton wrote that a fifty-inch cylinder Wilkinson had
+        bored for them “does not err the thickness of an old shilling in any part.” A worn shilling
+        was a little under a millimetre thick, which puts the error at less than one part in a
+        thousand across a cylinder wider than a metre. Relative to its size, that was about thirty
+        times more accurate than Watt's test cylinder from seven years earlier!</p>
+
+      <p>The coin was thinner than the smallest mark on a workshop rule. Even a common modern
+        tolerance for a precision bore that large is only about seven times tighter.<sup
+        class="footnote-ref" id="fnref-5"><a href="#fn-5">5</a></sup> Wilkinson had made a cylinder
+        accurate enough for Watt's dry packing to seal. For the next twenty years, nearly every
+        engine Boulton &amp; Watt built had one of his cylinders.<sup class="footnote-ref"
+        id="fnref-6"><a href="#fn-6">6</a></sup></p>
+    </section>
+
+    <section id="slide-rest">
+      <h2>The slide rest</h2>
+
+      <p>Most other round parts, like shafts and piston rods, were made on a lathe. The metal
+        spinning in a lathe is called the <em>work</em>, and the person running the lathe is the
+        <em>turner</em>. In the 1770s, the turner rested the cutting tool on a T-shaped support and
+        guided it by hand, much as a woodturner steadies a chisel. But cutting iron takes a lot of
+        force, and a turner's arms couldn't always hold the tool steady.</p>
+
+      <p>A heavy cut could push the tool away from the work, leaving a raised patch on the spinning
+        bar. One revolution later, that patch struck the tool again. The uneven surface made the
+        tool bounce, leaving more unevenness for the next turn. This growing vibration is called
+        <em>chatter</em>. Below, we can watch the same cut in slow motion, first with the tool braced
+        by hand and then clamped to cast iron.</p>
+
+      <figure class="interactive" data-figure="chatter"
+        aria-label="The same cut in slow motion, with the tool braced by hand and clamped to iron.">
+        <div class="figure-canvas"></div>
+      </figure>
+
+      <p>A slide rest clamps the tool in a carriage of cast iron and advances it with screws. The
+        carriage slides along two rails called the <em>ways</em>, which run the length of the
+        lathe's bed. The work is held between the <em>headstock</em> and <em>tailstock</em>, which
+        sit on the same ways. The headstock carries the <em>spindle</em>, the shaft that turns the
+        work. If the ways are straight and the two stocks line up, the tool travels parallel to the
+        work's axis.</p>
+
+      <figure class="interactive" data-figure="slide-rest" data-beats="1"
+        aria-label="The ways guide the carriage and carry the forces of the cut.">
+        <div class="figure-canvas"></div>
+      </figure>
+
+      <p>With a slide rest, the forces of the cut go into iron instead of the turner's arms. The
+        spinning surface drags down across the cutting edge, pressing the tool and carriage onto the
+        bed, while the ways resist the push away from the work. In our model, the iron support
+        bends about a hundred times less than the turner's braced arms,<sup class="footnote-ref"
+        id="fnref-7"><a href="#fn-7">7</a></sup> so a cut that set the hand-held tool chattering
+        runs smoothly.</p>
+
+      <p>Slide rests weren't new. Instrument makers and French mechanics had used them for
+        decades.<sup class="footnote-ref" id="fnref-8"><a href="#fn-8">8</a></sup> Beginning in the
+        1790s, Henry Maudslay made them rigid enough for heavy cuts in iron and combined them with
+        the screws and gears of a practical screw-cutting lathe.</p>
+
+      <p>The tool now followed the ways, so any bend in them would be copied into the work. A
+        workshop could check the ways against a flat reference surface, but first it had to make
+        one.</p>
+    </section>
+
+    <section id="flat">
+      <h2>Flat</h2>
+
+      <p>A workshop that needed a flat surface filed it by hand. A <em>file</em> is a hardened steel
+        bar whose fine teeth shave metal as it's pushed across a surface. Filing takes off the
+        largest bumps quickly, but the result depends on how steadily the file is held. Rock it
+        slightly from heel to toe and it leaves a shallow slope behind.</p>
+
+      <figure class="interactive" data-figure="file-floor"
+        aria-label="Filing removes large errors, then stalls as hand motion introduces new ones.">
+        <div class="figure-canvas"></div>
+      </figure>
+
+      <p>As the surface gets flatter, each stroke starts to add about as much unevenness as it
+        removes. The fitter can work more carefully, but can't hold the file perfectly steady or
+        feel where the smallest high spots remain.</p>
+
+      <p>Fitters got past this limit with a <em>scraper</em>, a short hard blade that shaves off
+        flakes a few thousandths of a millimetre thick, and with a way of finding errors far too
+        small to feel. They spread a thin film of colour over a flat reference plate and rubbed the
+        work against it. Colour transferred only where the work touched, marking the high spots
+        that needed cutting. The fitter scraped those spots and rubbed the work against the plate
+        again.<sup class="footnote-ref" id="fnref-9"><a href="#fn-9">9</a></sup></p>
+
+      <figure class="interactive" data-figure="scrape-stroke"
+        aria-label="Marking colour identifies the high spots for the scraper to remove.">
+        <div class="figure-canvas"></div>
+      </figure>
+
+      <p>The fitter doesn't have to hold the scraper level across the whole surface. The colour
+        shows where to cut, and the short edge removes only a little metal with each stroke. If a
+        spot is cut too deep, it stops touching the plate and picks up no colour. The fitter leaves
+        it alone while scraping down the higher metal around it. Each new set of marks shows where
+        more metal needs to come off, allowing the fitter to make a surface far flatter than filing
+        alone could produce.</p>
+
+      <p>This method needs a flat reference plate to start with. Rubbing two plates together only
+        shows whether they fit each other. A slightly domed plate can nest against a slightly hollow
+        one and print colour evenly across both, even though neither is flat, and scraping them only
+        makes them fit each other more closely. Below, two roughly filed plates are printed and
+        scraped until they fit, one domed and the other hollow.</p>
+
+      <figure class="interactive" data-figure="three-plates" data-beats="0-1"
+        aria-label="Two matching surfaces can remain curved, one domed and one hollow.">
+        <div class="figure-canvas"></div>
+      </figure>
+
+      <p>Here A is slightly domed and B slightly hollow, so they fit perfectly. Now take a third
+        plate, C, and scrape it to fit A. C becomes hollow too. When we rub B and C together, the
+        two hollows touch only around their edges, leaving a gap in the middle. The colour marks
+        the edges, so the fitter scrapes them down and then compares all three pairs again: A
+        against B, B against C and C against A. A dome can fit a hollow, but two domes or two
+        hollows can't fit each other. As the fitter keeps comparing and scraping, the curves become
+        shallower. All three plates can fit in every pairing and orientation only when they're
+        flat.</p>
+
+      <figure class="interactive" data-figure="three-plates" data-beats="2-3"
+        aria-label="Comparing and scraping three pairs exposes the matching curves.">
+        <div class="figure-canvas"></div>
+        <figcaption>The model shows errors along the length. On a full surface, comparisons in
+          different orientations also expose twist and errors across the width.</figcaption>
+      </figure>
+
+      <p>This is one of the most beautiful ideas in engineering. The fitter could start with three
+        rough castings and make a flat reference without having a flat surface to copy! The colour
+        and the comparisons showed where to remove metal. Toolmakers still use the three-plate
+        method to make a flat reference from scratch.<sup class="footnote-ref"
+        id="fnref-10"><a href="#fn-10">10</a></sup> By 1829, Maudslay's workshop had a scraped
+        plate on every bench. Most workshops had none, and in 1840 Whitworth published the method
+        and urged them to adopt it.</p>
+
+      <p>A workshop could use its flat plate to check a straightedge, then use the straightedge to
+        find and scrape the high spots on a machine's ways. Straight ways could also guide a cutting
+        tool. In a planing machine, which appeared around 1817, a casting travelled back and forth
+        beneath a fixed tool, quickly removing most of the metal before the final scraping. Below,
+        a later planer takes the top off a rough casting, one strip on each stroke. Like the lathe at
+        the top, it can be turned and zoomed.</p>
+
+      <figure class="interactive" data-figure="planer"
+        aria-label="A planing machine carries a casting back and forth under a fixed tool, which takes a strip off its top on every stroke until the whole top is planed.">
+        <div class="figure-canvas"></div>
+        <figcaption>A belt-driven New Haven planer of the 1890s, from <a
+          href="https://www.printables.com/model/207719-new-haven-metal-planer-model">dansfoundry's
+          model</a>.</figcaption>
+      </figure>
+
+      <aside class="sidenote">
+        <p><a href="https://en.wikipedia.org/wiki/Richard_Roberts_(engineer)">Richard Roberts</a>'s
+          planer of 1817, which <a
+          href="https://collection.sciencemuseumgroup.org.uk/objects/co46491/planing-machine">survives
+          at the Science Museum</a>, was smaller and worked by hand. Its table, 52 inches long, was
+          wound back and forth by a chain and drum, and between strokes the workman moved the tool
+          across by turning a screw. The belts, the automatic reversal and the self-acting feed in
+          the figure all came later, but Roberts's tool already sat in a hinged clamp that let it
+          lift on the return stroke.</p>
+      </aside>
+
+      <p>Whitworth reckoned in 1856 that truing a square foot of cast iron by chipping and filing had
+        cost twelve shillings in labour thirty years earlier. A planing machine now did the work
+        for less than a penny, more than a hundred times cheaper<sup class="footnote-ref"
+        id="fnref-11"><a href="#fn-11">11</a></sup>!</p>
+
+      <aside class="sidenote">
+        <p>Making a surface round is easier in one useful respect. As a lathe spins the work about a
+          fixed axis, the tool cuts away anything that projects beyond its tip. Keep the tip at one
+          distance from the axis and it leaves a circle, without anyone having to guide it around
+          that circle. Play in the bearings and bending of the tool still introduce errors, as we
+          saw with chatter, but the rotation itself gives the turner a circle to work from.</p>
+      </aside>
+
+      <p>We can now make the straight ways that guide our lathe's tool. To cut a thread, the
+        carriage also has to move the right distance for every turn of the work. The long screw
+        that moves it has to be accurate too.</p>
+    </section>
+
+    <section id="screw">
+      <h2>The screw</h2>
+
+      <p>Before Maudslay, each workshop cut screw threads its own way, by hand or with
+        <em>dies</em>, hardened tools that cut a thread around a bolt. The dies were copied from
+        older screws, carrying their errors into new threads. A nut made for one bolt rarely fitted
+        another, so each bolt and its nut had to be marked as a pair. Threads were often uneven as
+        well. Workmen called a thread whose turns weren't evenly spaced <em>drunken</em>.</p>
+
+      <p>On a screw-cutting lathe, a long screw called the <em>lead screw</em> moves the carriage,
+        copying its spacing into every thread the lathe cuts. An uneven lead screw makes uneven
+        threads, even if the ways are perfectly straight. Instrument makers already had fine screws
+        for dividing scales, but these were small and only had to move a point across brass.
+        Maudslay needed a long, accurate screw strong enough to push a cutting tool through iron.
+        How could he make the first one without an accurate screw to guide the tool?</p>
+
+      <aside class="sidenote">
+        <p><a href="https://en.wikipedia.org/wiki/Jesse_Ramsden">Jesse Ramsden</a>'s dividing
+          engine, finished around 1774, marked the scales of navigational instruments with a screw
+          working in the teeth of a large wheel. To make the teeth even, he let a notched copy of
+          the screw cut them, running the wheel round about three hundred times until, in his words,
+          the inequalities “soon corrected themselves.”</p>
+      </aside>
+
+      <p>The distance between neighbouring turns of a thread is its
+        <em>pitch</em>. On the screws in this article, it's also how far the screw advances through
+        its nut in one turn.<sup class="footnote-ref" id="fnref-12"><a href="#fn-12">12</a></sup> If
+        we unwrap the surface of a screw, the thread becomes a straight sloping line that rises one
+        pitch for every circumference it crosses. You can try this at your desk: cut a right
+        triangle out of paper and wrap it around a pencil, and its sloped edge winds itself into a
+        helix.</p>
+
+      <figure class="interactive" data-figure="screw-unwrap"
+        aria-label="Unwrapping a screw reveals an inclined line across a flat surface.">
+        <div class="figure-canvas"></div>
+      </figure>
+
+      <p>The pitch depends on the diameter of the cylinder and the slope of that line. Maudslay
+        used this geometry to make his first screws. He turned a soft cylinder of wood, tin or brass
+        between two pivots and pressed a hardened knife against it at a precisely set angle. As the
+        cylinder turned, the knife cut a shallow groove, and the groove drew the knife along the way
+        a thread draws a nut.<sup class="footnote-ref" id="fnref-13"><a href="#fn-13">13</a></sup>
+        Turning the crank faster made the knife travel faster, but didn't change how far it moved
+        on each revolution. That distance was set by the cylinder's circumference and the knife's
+        angle.</p>
+
+      <figure class="interactive" data-figure="screw-origination"
+        aria-label="An inclined knife makes a first screw without a guide screw.">
+        <div class="figure-canvas"></div>
+      </figure>
+
+      <p>Maudslay had made a screw without copying one! This is a remarkable piece of bootstrapping.
+        A <em>chasing tool</em>, with a row of teeth filed to the pitch, followed the shallow groove
+        and deepened it into a working thread. Small errors in the knife, the cylinder and the pivots
+        still left some turns farther apart than others. Those errors would be copied into any
+        thread the new screw guided, so Maudslay set about improving it.</p>
+
+      <h3>Improving the screw</h3>
+
+      <p>Maudslay also devised an ingenious method that used two imperfect screws to guide the tool
+        cutting a third. Equal gears turned both guide screws at the same speed. A bar joined their
+        two nuts, with the tool fixed at its midpoint, so the tool's position was the average of
+        the two nut positions. Where one guide ran ahead and the other lagged, their errors partly cancelled.
+        Each guide contributed only half its error to the new screw.<sup class="footnote-ref"
+        id="fnref-14"><a href="#fn-14">14</a></sup></p>
+
+      <figure class="interactive" data-figure="screw-averaging"
+        aria-label="Two guide screws move a bar whose midpoint averages their position errors.">
+        <div class="figure-canvas"></div>
+        <figcaption>The guide errors are far too small to see at this scale, so the chart reads them
+          out, magnified.</figcaption>
+      </figure>
+
+      <p>Averaging only helps where the errors differ. If both guides run ahead together, so does
+        the tool. To check whether the average spacing was right, Maudslay measured the nut's travel
+        over many turns against an ordinary rule. A screw of fifty threads to the inch should carry
+        its nut exactly one inch in fifty turns. Dividing that measured distance by fifty gives the
+        average pitch, with fifty times less uncertainty than measuring a single turn. It doesn't
+        tell us whether every turn is evenly spaced, but it can catch a screw whose pitch is too
+        large or too small overall.<sup class="footnote-ref" id="fnref-15"><a
+        href="#fn-15">15</a></sup></p>
+
+      <p>After repeated copying and correction, Maudslay made a master screw five feet long and two
+        inches across, with fifty threads to the inch and a foot-long nut that engaged six hundred
+        of them at once. It was used to divide the scales of astronomical instruments.</p>
+    </section>
+
+    <section id="change-gears">
+      <h2>Many pitches from one screw</h2>
+
+      <p>Maudslay's first screw-cutting lathe, built around 1797, coupled its lead screw directly to
+        the spindle. Every thread it cut had the lead screw's own pitch, and a different pitch meant
+        fitting a different lead screw. Within a few years he had joined the two through gears that
+        could be exchanged, so that one lead screw could cut many pitches.<sup class="footnote-ref"
+        id="fnref-16"><a href="#fn-16">16</a></sup></p>
+
+      <p>The lead screw in our model moves the carriage six millimetres per turn, so coupled
+        directly to the spindle, it cuts a six-millimetre thread. To cut a three-millimetre thread,
+        the lead screw has to make exactly half a turn for every turn of the work, and a pair of
+        gears can do that. Below, a 24-tooth wheel drives a 48-tooth wheel through one full turn of
+        the small wheel.</p>
+
+      <figure class="interactive" data-figure="gear-reduction"
+        aria-label="Twenty-four teeth on the driving wheel move a forty-eight-tooth wheel through half a turn.">
+        <div class="figure-canvas"></div>
+      </figure>
+
+      <p>In one full turn, all 24 teeth on the small wheel pass through the mesh, moving 24 of the
+        large wheel's 48 teeth past the same point. The tooth counts set the ratio at exactly two
+        to one. But if we put these two wheels directly on our lathe, they turn the spindle and lead
+        screw in opposite directions, sending the carriage the wrong way. They may not reach each
+        other across the gap between the two shafts, either.</p>
+
+      <p>A third wheel, called an <em>idler</em>, fits between them. It reverses the drive once
+        more, so the spindle and lead screw turn in the same direction, and bridges the gap between
+        their shafts.</p>
+
+      <figure class="interactive" data-figure="gear-idler"
+        aria-label="An idler changes the direction and spacing of the drive without changing its ratio.">
+        <div class="figure-canvas"></div>
+      </figure>
+
+      <p>The idler doesn't change the ratio. However many teeth it has, every tooth moved by the
+        first wheel moves one tooth on the last, so only the end wheels set the pitch. Equal end
+        wheels give six millimetres. Put 24 teeth on the spindle and 48 on the lead screw and the
+        pitch becomes three millimetres; change the last wheel to 72 and it becomes two. The turner
+        kept the wheels in a drawer beside the lathe and swung their mounting plate until the teeth
+        met. Below, one lead screw cuts all three pitches on the same bar.</p>
+
+      <figure class="interactive" data-figure="change-gears"
+        aria-label="Changing the gears changes the pitch cut by the lathe.">
+        <div class="figure-canvas"></div>
+      </figure>
+
+      <p>The tooth counts fix the ratio over complete turns, but poorly made teeth can still make
+        the lead screw speed up and slow down within a turn.<sup class="footnote-ref"
+        id="fnref-17"><a href="#fn-17">17</a></sup> With well-made gears, one accurate lead screw
+        could cut many accurate pitches.</p>
+
+      <p>A deep thread takes several passes, since cutting it all at once would overload the tool.
+        Each pass has to follow the groove left by the one before. The turner doesn't have to find
+        that groove by eye. The gears return the tool to the same thread on every pass! As long as
+        they stay connected, they keep the carriage's movement in step with the work's rotation.
+        Running the machine backwards brings the tool home along the same thread. The turner then
+        sets the tool a little deeper and runs forwards again, and it follows the groove on the next pass. If the
+        gears are separated and rejoined out of step, the tool cuts across the thread instead.</p>
+
+      <figure class="interactive" data-figure="thread-retrace"
+        aria-label="Keeping the gears engaged returns the tool to its groove; separating them spoils the thread.">
+        <div class="figure-canvas"></div>
+      </figure>
+
+      <p>We can now cut an even thread at several pitches and deepen it over repeated passes. But
+        the turner still needs to know when the screw has reached the right diameter. A workshop
+        rule can't distinguish two parts that differ by a thousandth of an inch.</p>
+    </section>
+
+    <section id="measuring">
+      <h2>Measuring with a screw</h2>
+
+      <p>Maudslay checked sizes with a bench micrometer. A fine screw, turned by a wheel divided
+        around its edge, moved one of two flat jaws along a bed. It could show a difference of a
+        thousandth of an inch, about a quarter of the thickness of a sheet of paper and more than
+        sixty times finer than the smallest mark on a workshop rule. When two workmen disagreed
+        about a measurement, the part went between the jaws and the instrument settled it. Maudslay
+        called it the Lord Chancellor, after England's highest judge.<sup class="footnote-ref"
+        id="fnref-18"><a href="#fn-18">18</a></sup></p>
+
+      <p>The screw works as a lever for length. In our model of the Chancellor, one turn moves the
+        rim of the wheel about 251 millimetres while the jaw advances only half a millimetre. A
+        small movement at the jaw appears five hundred times larger at the rim, where we can read
+        it against engraved marks. The smallest change those marks can show is the instrument's
+        <em>resolution</em>.<sup class="footnote-ref"
+        id="fnref-19"><a href="#fn-19">19</a></sup></p>
+
+      <figure class="interactive" data-figure="lord-chancellor" data-beats="0-2"
+        aria-label="The micrometer screw converts a large turn of the wheel into a small movement of the jaw.">
+        <div class="figure-canvas"></div>
+      </figure>
+
+      <p>The two thin metal plates below, called <em>shims</em>, both look about three and a half
+        millimetres thick against a rule. Between the jaws, they read 3.615 and 3.640 millimetres.
+        The difference is 0.025 millimetres, about a third of the width of a hair. The screw magnifies
+        it five hundred times, so on the rim of the wheel the two readings are more than a centimetre
+        apart.</p>
+
+      <figure class="interactive" data-figure="lord-chancellor" data-beats="3-4"
+        aria-label="The micrometer distinguishes two shims that look the same thickness against a rule.">
+        <div class="figure-canvas"></div>
+      </figure>
+
+      <p>But the reading also depends on how hard the operator turns the wheel. Once the jaws touch
+        the shim, extra force bends the frame slightly and lets the wheel turn a little further.
+        The shim hasn't changed thickness, but the reading has. To compare two parts, the jaws have
+        to close with the same force each time.</p>
+
+      <figure class="interactive" data-figure="lord-chancellor" data-beats="5"
+        aria-label="Greater measuring force bends the frame and changes the reading.">
+        <div class="figure-canvas"></div>
+      </figure>
+
+      <p>Reversing the wheel causes a subtler problem. A screw needs a little clearance in its nut
+        so that it can turn. While it moves forward, one face of each thread carries the load. Turn
+        it back, and the screw has to cross the clearance before the opposite faces touch, so for a
+        small part of a turn the wheel moves while the jaw doesn't. This lost motion is called
+        <em>backlash</em>, and we can see it most clearly on a plain screw and carriage.</p>
+
+      <figure class="interactive" data-figure="backlash-3d"
+        aria-label="The handwheel crosses the clearance between thread faces before the carriage reverses.">
+        <div class="figure-canvas"></div>
+      </figure>
+
+      <p>On the micrometer, backlash means the same shim can give two readings, depending on which
+        way the wheel last turned. Below, the jaws close on a shim, then the operator eases the
+        wheel back a little to reduce the pressure. The wheel changes its reading before the jaw
+        starts to move.</p>
+
+      <figure class="interactive" data-figure="lord-chancellor" data-beats="6-7"
+        aria-label="Easing the wheel back changes the reading for the same shim; closing in one motion makes it repeat.">
+        <div class="figure-canvas"></div>
+      </figure>
+
+      <p>Machinists deal with this by always closing onto the part from the same direction. If they
+        overshoot, they open the jaws well past the clearance and close again, so the screw always
+        bears on the same thread faces. Using the same approach and the same force makes a reading
+        <em>repeatable</em>: measuring the same shim again gives the same number. That still doesn't
+        make it <em>accurate</em>. If the screw's pitch is slightly off, repeated readings can agree
+        and still be wrong. To check the instrument's accuracy, we need a part whose length is
+        already known.</p>
+
+    </section>
+
+    <section id="millionth">
+      <h2>The millionth of an inch</h2>
+
+      <p>Whitworth wanted workshops to stop measuring with rules. He argued that it was easier to
+        work to a ten-thousandth of an inch by comparing a part with a steel bar of known length
+        than to a hundredth by reading the lines on a rule. He called these bars
+        <em>standards of end measure</em>, because the length was the distance between their ends.
+        To make them, he needed a measuring instrument much finer than the Chancellor.</p>
+
+      <p>Whitworth's machine used a screw-driven jaw like the Chancellor's, but with a nut made in
+        two adjustable halves. He first fitted the nut to the measuring screw, then cut it in two.
+        Small screws drew the halves together until one pressed on the forward faces of the thread
+        and the other on the rear faces. This took up the clearance that caused backlash, much as
+        two doorstops on opposite sides keep a door from moving either way. As the threads wore,
+        the halves could be drawn a little closer.</p>
+
+      <figure class="interactive" data-figure="divided-nut"
+        aria-label="Two adjustable nut halves contact opposite faces of the screw thread.">
+        <div class="figure-canvas"></div>
+      </figure>
+
+      <p>To reduce the effect of an unsteady hand, Whitworth put a <em>worm</em> between the
+        handwheel and the measuring screw. A worm is a short screw whose thread meshes with the
+        teeth of a wheel. One turn of the worm moves the wheel by a single tooth, so with a 200-tooth
+        wheel, the measuring screw turns only a two-hundredth as far as the handwheel. A small
+        unwanted turn of the handwheel is reduced by the same ratio.</p>
+
+      <figure class="interactive" data-figure="worm-drive"
+        aria-label="A worm turns the measuring screw through a large gear reduction.">
+        <div class="figure-canvas"></div>
+      </figure>
+
+      <p>The measuring screw had twenty threads to the inch, the worm wheel two hundred teeth, and
+        the handwheel was divided into 250 parts. Twenty times two hundred times two hundred and
+        fifty is a million, so one division on the wheel moved the measuring faces one millionth of
+        an inch, about 25 nanometres.<sup class="footnote-ref" id="fnref-20"><a
+        href="#fn-20">20</a></sup> A fingernail grows that much in about twenty seconds.</p>
+
+      <p>A movement that small is far too fine to judge by eye. It's only about a twentieth of a
+        wavelength of green light, much narrower than an engraved line. Whitworth used a small,
+        flat piece of steel, the <em>gravity piece</em>, to find when the faces had closed far
+        enough. It sat between one measuring face and the end of the bar. The operator closed the
+        faces a division at a time, letting go of the piece after each step. At first it fell, but
+        when the faces pressed closely enough, friction held it. Closing them just one millionth
+        of an inch further could make the difference between a piece that fell and one that stayed
+        put!</p>
+
+      <p>The machine compared two nearly equal lengths. The operator first measured a standard,
+        closing the faces until they held the gravity piece, then exchanged the standard for the
+        work and repeated the same test. The change in the wheel's reading gave the difference in
+        length. The measuring screw only travelled through that small difference, and a fixed
+        error shared by both readings cancelled when one was subtracted from the other.<sup
+        class="footnote-ref" id="fnref-21"><a href="#fn-21">21</a></sup> It didn't have to measure
+        the whole bar from zero.</p>
+
+      <p>At the Great Exhibition of 1851, Whitworth had someone else adjust the machine a millionth
+        of an inch at a time without telling him, and detected every change. Below, we can see the
+        machine compare a bar with a standard, then try a similar test ourselves.</p>
+
+      <figure class="interactive" data-figure="millionth-machine"
+        aria-label="The gravity piece compares a bar with a standard, one millionth of an inch at a time.">
+        <div class="figure-canvas"></div>
+      </figure>
+
+      <p>Even the operator's body heat mattered. A yard of steel grows about 230 millionths of an
+        inch for every degree Fahrenheit, and Whitworth found that the slightest touch of a finger
+        on a yard bar in the machine warmed it enough to stop the gravity piece from falling. A
+        standard of length is only exact at one stated temperature, which for the British standard
+        yard was 62 °F.</p>
+
+      <aside class="sidenote">
+        <p>The instrument could wear itself out. Rubbing the soft steel gravity piece a few times
+          could take a millionth of an inch off its thickness, and the jury at the Great Exhibition
+          warned that repeated contact would wear away the ends of the bars being measured.</p>
+      </aside>
+
+      <p>The measuring machines were used to make and check standard gauges, steel plugs and rings
+        of known diameter. A workshop could check its parts against these gauges without having a
+        millionth machine of its own. Whitworth showed how much a small change in size affected the
+        fit: in a ring of 0.5770 inch, a plug of 0.5770 inch “fits tightly … when both are clean and
+        dry.” A plug of 0.5769 inch, one ten-thousandth smaller, “is so loose in it as to appear not
+        to fit at all.” The difference was about a thirtieth of the width of a hair. By 1857, the
+        workmen in Whitworth's own works measured to a twenty-thousandth of an inch.<sup
+        class="footnote-ref" id="fnref-22"><a href="#fn-22">22</a></sup></p>
+
+      <figure class="interactive" data-figure="whitworth-gauges"
+        aria-label="Plugs of .5770 and .5769 inch tried in a .5770-inch ring, clean and dry and then oiled.">
+        <div class="figure-canvas"></div>
+        <figcaption>The figure runs three times slower than life.</figcaption>
+      </figure>
+
+      <p>In about fifty years, the smallest difference a workshop instrument could reveal had
+        shrunk from the Chancellor's thousandth of an inch to Whitworth's millionth, a thousand
+        times finer. The gauges carried the benefit into everyday work. Now, let's return to the
+        lathe.</p>
+    </section>
+
+    <section id="machine-that-made-machines">
+      <h2>The machine that made machines</h2>
+
+      <p>Here is the complete lathe from the beginning of the article. We've now seen how each of
+        its main parts could be made accurate. The ways can be checked against a flat reference
+        and scraped straight. The slide rest holds the tool steady under the force of the cut. A
+        lead screw, made by copying and correcting earlier screws, moves the carriage evenly along
+        the bed. Change wheels set how far it moves for each turn of the work. Together, these
+        parts let the turner cut a straight shaft or an even thread, then check its size with a
+        micrometer or gauge.</p>
+
+      <figure class="interactive" data-figure="lathe-finale"
+        aria-label="The complete lathe combines the ways, slide rest, lead screw and change wheels.">
+        <div class="figure-canvas"></div>
+      </figure>
+
+      <p>Steam engines needed true cylinders, straight piston rods and flat valve faces, and machine
+        tools made them more quickly and consistently than hand fitting could. A lathe could also
+        make screws and spindles for another lathe, while a planing machine cut its bed. The new
+        machine would follow the geometry of those parts each time it cut. A skilled turner still
+        had to set it up and choose the cut, but no longer had to guide the tool's whole path by
+        hand.</p>
+
+      <aside class="sidenote">
+        <p><a href="https://en.wikipedia.org/wiki/Joseph_Clement">Joseph Clement</a>, who had
+          worked for Maudslay, built the part of Charles Babbage's <a
+          href="https://en.wikipedia.org/wiki/Difference_engine">Difference Engine</a> that was
+          finished in Babbage's lifetime. Measurements of its surviving parts show him holding
+          repeated pieces within two thousandths of an inch of one another, and the engineers who
+          completed Babbage's later design at the Science Museum in 1991 made no part more precisely
+          than that.</p>
+      </aside>
+    </section>
+
+    <section id="epilogue">
+      <h2>Epilogue</h2>
+
+      <p>Workshops used machine tools like Maudslay's lathe to make parts for the railways,
+        steamships and factories of the nineteenth century, and standards like Whitworth's to
+        check their sizes. Machine tools also made parts for new machine tools, copying their
+        accuracy and improving it as workshops learned better ways to guide a cut or check a size.
+        Small gauge blocks, the standards of length that workshops use to check their instruments,
+        can now be made within a millionth of an inch of their stated size.<sup
+        class="footnote-ref" id="fnref-23"><a href="#fn-23">23</a></sup> A millionth of an inch, the
+        smallest difference Whitworth's machine could detect, is now a manufacturing tolerance.</p>
+    </section>
+
+    <section class="footnotes" id="footnotes">
+      <h2>Footnotes</h2>
+      <ol>
+        <li id="fn-1"><p>Large engine cylinders were usually moulded in loam, standing upright in a
+          pit, around a core of brickwork plastered with loam and swept to shape by a board turning
+          about the centre. Smaller cylinders were moulded in sand from a wooden pattern, the simpler method the figure shows. Holtzapffel put the pressure of the iron at the base of a tall mould at “near 60
+          pounds on every square inch,” and Overman's founding manual warns that “the least lifting
+          will inevitably destroy the cast.” Cores were often stiffened with straw or dung, which
+          burned out as the core was dried, leaving it porous so that gas could escape during the
+          pour. The sand itself survives because quartz melts at about 1700 °C, well above iron's
+          pouring temperature of around 1400 °C, although it can fuse to the surface and leave a
+          rough skin to machine away. <a class="footnote-back" href="#fnref-1">&#8617;</a></p></li>
+        <li id="fn-2"><p>A round bar held out from one end sags under its own weight by
+          2<em>ρgL</em><sup>4</sup>/(<em>Ed</em><sup>2</sup>), where <em>L</em> is the unsupported
+          length, <em>d</em> the diameter and <em>E</em> the stiffness of the iron. A wrought-iron
+          bar 100 mm thick held out 1.8 m sags almost a millimetre before it cuts anything. The
+          length enters as the fourth power and the thickness as the square. Supporting both ends
+          of the same span cuts the sag nearly tenfold, and a bar twice as thick sags a quarter as
+          much. <a class="footnote-back" href="#fnref-2">&#8617;</a></p></li>
+        <li id="fn-3"><p>This is John Farey's description, in <em>A Treatise on the Steam
+          Engine</em> (1827), of the mill that <a
+          href="https://en.wikipedia.org/wiki/John_Smeaton">John Smeaton</a>, the leading engineer
+          of the day, designed for the Carron ironworks around 1769. The weight of its cutter head
+          rested on the lower cutters, so a bore came out “smoothed at the lower part, but very
+          imperfectly touched, or not touched at all, at the upper part.” Smeaton designed a
+          balanced carriage to take the weight off, and the Carron workmen declined to use it. <a
+          class="footnote-back" href="#fnref-3">&#8617;</a></p></li>
+        <li id="fn-4"><p>Wilkinson had patented a machine for boring cannon in 1774, and the two are
+          often confused. In the cannon machine, the solid gun casting turned against a fixed
+          cutter. The cylinder mill, which he never patented, held the casting still and turned the
+          bar. <a class="footnote-back" href="#fnref-4">&#8617;</a></p></li>
+        <li id="fn-5"><p>Most coins in circulation were badly worn. When the Mint weighed
+          circulating shillings in 1787, it took 78 of them to make a troy pound of silver, against
+          62 new ones, which puts an average worn shilling at about 0.9 mm thick. The modern
+          comparison is the ISO 286 tolerance grade IT7, common for precision fits, which allows
+          0.125 mm on a bore of 1.27 m. <a class="footnote-back" href="#fnref-5">&#8617;</a></p></li>
+        <li id="fn-6"><p>James Watt's son wrote in 1795 that “in the course of twenty years we have
+          not erected more than three or four Engines the cylinders of which were not of his
+          manufacture.” The supply ended that year, and the first boring mill at Boulton &amp;
+          Watt's own foundry at Soho, tried in December 1796, suffered from vibration. <a
+          class="footnote-back" href="#fnref-6">&#8617;</a></p></li>
+        <li id="fn-7"><p>The stiffnesses in the figures are teaching estimates, not measurements of
+          Maudslay's lathe or an eighteenth-century turner. They compare a hand-held tool with a much
+          stiffer iron support. How far the tool moves under load depends on every part that
+          supports it, and on the support holding the work. <a class="footnote-back"
+          href="#fnref-7">&#8617;</a></p></li>
+        <li id="fn-8"><p><a href="https://en.wikipedia.org/wiki/Jacques_de_Vaucanson">Jacques de
+          Vaucanson</a> built an iron lathe in France around 1751 whose tool carriage was moved by
+          a hand-turned screw, and the French <em>Encyclopédie</em> illustrated a slide rest in
+          1772. Jesse Ramsden's screw-cutting lathe of the 1770s had a guide screw and change
+          wheels. Maudslay's first, a slide tool for the lockmaker <a
+          href="https://en.wikipedia.org/wiki/Joseph_Bramah">Joseph Bramah</a>, was in use by 1794.
+          Historians since Roe credit him with making the slide rest rigid and
+          combining it with the lead screw and change wheels in one practical machine. The slide rest
+          also needed a cutting edge that stayed sharp. In Sheffield in the 1740s, <a
+          href="https://en.wikipedia.org/wiki/Benjamin_Huntsman">Benjamin Huntsman</a> had melted
+          blister steel in closed clay crucibles, producing a far more uniform steel that could be
+          hardened reliably. <a class="footnote-back" href="#fnref-8">&#8617;</a></p></li>
+        <li id="fn-9"><p>The fitter used progressively less colouring matter as the surfaces improved.
+          Whitworth describes starting with red ochre and oil, then thinning the coating until only a
+          film remained. The figures use blue to make the contact marks visible, and the three-plate
+          model includes the height lost as metal is scraped away. <a class="footnote-back"
+          href="#fnref-9">&#8617;</a></p></li>
+        <li id="fn-10"><p>Hand scraping is still used to finish the ways of precision machine tools,
+          and the three-plate principle remains the way to make a flat reference without a flatter
+          one to copy. Wayne R. Moore's <em>Foundations of Mechanical Accuracy</em> (1970) is the
+          classic modern account of both. <a class="footnote-back" href="#fnref-10">&#8617;</a></p></li>
+        <li id="fn-11"><p>Richard Roberts built a planing machine in 1817, and Joseph Clement and <a
+          href="https://en.wikipedia.org/wiki/James_Fox_(engineer)">James Fox</a> built others
+          within a few years. Planing removed metal rapidly, while scraping remained the way to make
+          the final correction to reference surfaces and machine ways. In
+          Whitworth's words, from his <a
+          href="https://en.wikisource.org/wiki/Miscellaneous_Papers_on_Mechanical_Subjects/Address_delivered_to_the_Institution_of_Mechanical_Engineers">1856
+          address</a>: “Thirty years ago, the cost of labour for making a surface of cast iron true,
+          by chipping and filing by the hand, was 12s. per square foot; the same work is now done by
+          the planing machine at a cost for labour of less than 1d.” A planing machine itself could
+          cost £500 or more. <a class="footnote-back" href="#fnref-11">&#8617;</a></p></li>
+        <li id="fn-12"><p>Strictly, the distance a screw advances in one turn is its <em>lead</em>, and
+          the spacing between neighbouring turns is its <em>pitch</em>. On a screw with a single
+          thread they are the same distance. A two-start screw has two threads wound side by side,
+          so it advances two pitches per turn. Every screw in this article is single-start. <a
+          class="footnote-back" href="#fnref-12">&#8617;</a></p></li>
+        <li id="fn-13"><p>Holtzapffel describes Maudslay's inclined knife on a slide travelling along
+          the lathe bar, with a soft cylinder turning between two pivots. He records trials in wood, tin
+          and brass, and comparison of the resulting screws against a fixed measure. The broad thread
+          in the figure makes the geometry visible; it is not the pitch of a particular surviving
+          screw. <a class="footnote-back" href="#fnref-13">&#8617;</a></p></li>
+        <li id="fn-14"><p>Holtzapffel, Vol. II, pp. 643–644, describes the <a
+          href="https://chestofbooks.com/home-improvement/workshop/Turning-Mechanical/Maudslay-s-Methods-Of-Originating-Screws.html">two
+          guide screws, equal wheels and connecting bar</a>. The figure uses illustrative errors, not
+          measurements of historical screws. If the two nut positions are <em>a</em> and <em>b</em>,
+          the bar's midpoint is at (<em>a</em> + <em>b</em>)/2. <a class="footnote-back"
+          href="#fnref-14">&#8617;</a></p></li>
+        <li id="fn-15"><p>Measuring the travel over many turns gives an average pitch, but tells us
+          little about the spacing of individual turns. Suppose fifty turns should span one inch, and
+          we can measure that inch to within half a millimetre. Dividing by fifty gives an uncertainty
+          of one hundredth of a millimetre in the average pitch. Some turns could still be too wide
+          and others too narrow. <a class="footnote-back" href="#fnref-15">&#8617;</a></p></li>
+        <li id="fn-16"><p>Roe describes Maudslay's first screw-cutting lathe, of about 1797, as using
+          interchangeable lead screws, and a later one with a set of twenty-eight change wheels. The
+          Science Museum's Maudslay lathe of about 1800, whose bed is two triangular bars, had its
+          lead screw geared to the spindle by change wheels, now missing. It was turned by hand. <a
+          class="footnote-back" href="#fnref-16">&#8617;</a></p></li>
+        <li id="fn-17"><p>The teeth on change wheels around 1800 were cycloidal in theory and often
+          approximate in manufacture. Tooth count fixes the ratio over complete turns, but errors in
+          the spacing and shape of individual teeth can make the driven wheel advance unevenly within
+          a turn. Good screw-cutting still requires well-made gears. <a class="footnote-back"
+          href="#fnref-17">&#8617;</a></p></li>
+        <li id="fn-18"><p>The <a
+          href="https://collection.sciencemuseumgroup.org.uk/objects/co59282/maudslay-s-lord-chancellor-bench-micrometer">Science
+          Museum's surviving micrometer</a> is dated around 1805. The museum cautions that it may be
+          a model for a larger instrument or an unfinished small example. The figures use a metric
+          teaching model that is deliberately finer than the original, which read to a thousandth of
+          an inch, and is not a reconstruction of that object. <a class="footnote-back"
+          href="#fnref-18">&#8617;</a></p></li>
+        <li id="fn-19"><p>Jean Laurent Palmer patented a hand micrometer in Paris in 1848, and <a
+          href="https://en.wikipedia.org/wiki/Brown_%26_Sharpe">Brown &amp; Sharpe</a> began
+          selling their own in 1867 after seeing one at the Paris Exposition. A workman could carry
+          the instrument to the part instead of bringing the part to a measuring bench. <a
+          class="footnote-back" href="#fnref-19">&#8617;</a></p></li>
+        <li id="fn-20"><p>One division on the wheel is about 0.04 inches at its rim, so the machine
+          magnifies the movement of the faces roughly forty thousand times. Even the divided nuts
+          could not remove the lost motion entirely: Whitworth reported that the backlash in the
+          whole train could sometimes be kept within two millionths of an inch, two divisions on the
+          wheel. <a class="footnote-back" href="#fnref-20">&#8617;</a></p></li>
+        <li id="fn-21"><p>Goodeve and Shelley describe the comparison procedure on pp. 48–49 of <em>The
+          Whitworth Measuring Machine</em> (1877), and reproduce Whitworth's 1855 testimony about the
+          blind tests at the Great Exhibition. Comparing nearby lengths keeps the measuring screw's
+          travel short. A fixed error shared by both readings cancels when one is subtracted from the
+          other; an error that changes between readings does not. <a class="footnote-back"
+          href="#fnref-21">&#8617;</a></p></li>
+        <li id="fn-22"><p>Whitworth's gauges appeared in the 1851 exhibition catalogue as “internal and
+          external standard cylindrical gauges … tested by the measuring machine.” The quotations
+          come from his 1857 paper on standard decimal measures of length, which also records a
+          surprise: a film of oil made the larger plug move “more easy” and the smaller one “more
+          tight.” <a class="footnote-back" href="#fnref-22">&#8617;</a></p></li>
+        <li id="fn-23"><p>NIST's <a
+          href="https://nvlpubs.nist.gov/nistpubs/Legacy/MONO/nistmonograph180.pdf">gauge-block
+          handbook</a> (1995), Table 2.1a, lists a nominal-length tolerance of one millionth of an
+          inch for grade 0.5 inch blocks shorter than an inch. Longer blocks have larger tolerances,
+          and the specification makes a separate allowance for measurement uncertainty. In 1896, <a
+          href="https://en.wikipedia.org/wiki/Carl_Edvard_Johansson">Carl Edvard Johansson</a>
+          devised sets of blocks that could be combined to make many lengths. Their faces are so
+          flat that two blocks slid together with a trace of oil cling, which machinists call
+          wringing. <a
+          class="footnote-back" href="#fnref-23">&#8617;</a></p></li>
+      </ol>
+    </section>
+
+    <footer class="article-footer">
+      <h2>Sources &amp; credits</h2>
+      <ul>
+        <li>The lathe is an original CAD model built in Onshape for this article. Geometry and
+          motion were exported with
+          <a href="https://github.com/glinscott/onshape_exporter">glinscott/onshape_exporter</a>
+          and rendered with three.js.</li>
+        <li>The interactive figures were built by myself and Claude Fable 5.</li>
+        <li>The planing machine is dansfoundry's
+          <a href="https://www.printables.com/model/207719-new-haven-metal-planer-model">New Haven
+          metal planer model</a> (public domain), reassembled and set running for the figure.</li>
+        <li>Joseph Wickham Roe, <a href="https://archive.org/details/englishandameri00roegoog"><em>English
+          and American Tool Builders</em></a> (1916), the classic history of the machine-tool
+          pioneers.</li>
+        <li>John Farey, <a href="https://archive.org/details/treatiseonsteame01fareuoft"><em>A
+          Treatise on the Steam Engine</em></a> (1827), for Smeaton's mill at Carron, Wilkinson's
+          mill at Bersham, the Boulton &amp; Watt letters on its cylinders, and the hot, dry
+          packing.</li>
+        <li>J. P. Muirhead, <em>The Origin and Progress of the Mechanical Inventions of James
+          Watt</em> (1854), for Watt's Kinneil cylinder and his packing experiments; Samuel Smiles,
+          <em>Industrial Biography: Iron Workers and Tool Makers</em> (1863); T. S. Ashton, <em>Iron
+          and Steel in the Industrial Revolution</em> (1924), for Wilkinson's supply of
+          cylinders.</li>
+        <li>Charles Holtzapffel, <em>Turning and Mechanical Manipulation</em>, Vol. I (1843) on
+          founding, and <a href="https://chestofbooks.com/home-improvement/workshop/Turning-Mechanical/Maudslay-s-Methods-Of-Originating-Screws.html">Vol. II</a>
+          (1846), pp. 635–655, on screw origination, copying and correction; Frederick Overman,
+          <em>The Moulder's and Founder's Pocket Guide</em> (1851).</li>
+        <li>James Nasmyth, <a href="https://archive.org/details/jamesnasengineer00nasmrich"><em>James
+          Nasmyth, Engineer: An Autobiography</em></a>, ed. Samuel Smiles (1883), for Maudslay's
+          workshop: the bench plates, the master screw, bolts and nuts before Maudslay, and the
+          “Lord Chancellor”.</li>
+        <li>Jesse Ramsden, <em>Description of an Engine for Dividing Mathematical Instruments</em>
+          (1777) and <em>Description of an Engine for Dividing Straight Lines</em> (1779).</li>
+        <li>T. M. Goodeve &amp; C. P. B. Shelley,
+          <a href="https://archive.org/details/whitworthmeasur00whitgoog"><em>The Whitworth
+          Measuring Machine</em></a> (1877): the millionth machine's gearing, divided nut, gravity
+          piece and the 1855 blind-test evidence.</li>
+        <li>Joseph Whitworth, <a href="https://en.wikisource.org/wiki/Miscellaneous_Papers_on_Mechanical_Subjects/A_Paper_on_Plane_Metallic_Surfaces_or_True_Planes">paper on true planes</a> (1840), <a href="https://en.wikisource.org/wiki/Miscellaneous_Papers_on_Mechanical_Subjects/A_Paper_on_an_Uniform_System_of_Screw_Threads">paper on screw threads</a> (1841), <a href="https://en.wikisource.org/wiki/Miscellaneous_Papers_on_Mechanical_Subjects/Address_delivered_to_the_Institution_of_Mechanical_Engineers">address
+          to the Institution of Mechanical Engineers</a> (Glasgow, 1856) and paper on standard
+          decimal measures of length (1857), reprinted in <em>Miscellaneous Papers on Mechanical
+          Subjects</em> (1858).</li>
+        <li><em>Reports by the Juries</em> of the Great Exhibition (1852).</li>
+        <li>Doron Swade, “The Construction of Charles Babbage's Difference Engine No. 2,” <em>IEEE
+          Annals of the History of Computing</em> 27:3 (2005), for Clement's tolerances.</li>
+        <li>Science Museum Group collection notes for <a href="https://collection.sciencemuseumgroup.org.uk/objects/co60272/dividing-engine-for-making-sextants-and-octants-circular-dividing-engine">Ramsden-type dividing engines</a>,
+          Maudslay's screw-cutting lathe, and
+          <a href="https://collection.sciencemuseumgroup.org.uk/objects/co59282/maudslay-s-lord-chancellor-bench-micrometer">Maudslay's
+          “Lord Chancellor” bench micrometer</a>.</li>
+        <li>Grace's Guide entries on
+          <a href="https://www.gracesguide.co.uk/Early_Boring_Mills">early boring mills</a> and
+          <a href="https://www.gracesguide.co.uk/Joseph_Whitworth_and_Co">Joseph Whitworth and
+          Co</a>, and the <a href="https://imechearchive.wordpress.com/2021/05/14/objects-of-engineering-whitworths-millionth-machine/">IMechE
+          Archive note</a> on its surviving millionth machine.</li>
+        <li>NIST Monograph 180 (1995) for modern gauge-block grades; ISO 286-1 for modern bore
+          tolerances.</li>
+      </ul>
+    </footer>
+
+  </article>
+</body>
+</html>
